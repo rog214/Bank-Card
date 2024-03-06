@@ -36,3 +36,25 @@ function cardTransition() {
 function cardEnter(event) {
 	cardTransition();
 }
+
+function isMobileDevice() {
+	return (
+		/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+			navigator.userAgent
+		) && window.innerWidth <= 768
+	);
+}
+
+if (isMobileDevice()) {
+	let angleY = 0;
+	const maxAngleY = 25;
+
+	function animateCard() {
+		angleY = Math.sin(Date.now() / 1000) * maxAngleY;
+
+		const angleX = 0;
+
+		card.style.transform = `perspective(500px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+	}
+	setInterval(animateCard, 20);
+}
